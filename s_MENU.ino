@@ -1,13 +1,23 @@
+// Example of a serial menu
+//
+// Origial repository
+// https://github.com/elshnkhll/ESP_Serial_Menu
+//
+// Minor changes by Mats Karlsson 2024-10-02
+// https://github.com/mats-nk/ESP_Serial_Menu
+
 String ssid     = "old SSID";
 String password = "old pwd";
 String key      = "old key";
 
+
 void setup() {
   delay(10);
   Serial.begin(115200);
-  Serial.println("\033[2J\033[1;1H"); // clr scrn
+  Serial.println("\033[2J\033[1;1H");            // Clear screen
   delay(500);
 }
+
 
 void loop() {
   Serial.println(" *** MENU ***");
@@ -22,19 +32,19 @@ void loop() {
 
   switch ( temp_i ) {
     case 1:
-      Serial.println("\033[2J\033[1;1H"); // clr scrn
+      Serial.println("\033[2J\033[1;1H");        // Clear screen
       input_prompt(password, "password", 8);
       break;
     case 2:
-      Serial.println("\033[2J\033[1;1H"); // clr scrn
+      Serial.println("\033[2J\033[1;1H");        // Clear screen
       input_prompt(ssid, "SSID", 4);
       break;
     case 3:
-      Serial.println("\033[2J\033[1;1H"); // clr scrn
+      Serial.println("\033[2J\033[1;1H");        // Clear screen
       input_prompt(key, "API key", 12);
       break;
     case 4:
-      Serial.println("\033[2J\033[1;1H"); // clr scrn
+      Serial.println("\033[2J\033[1;1H");        // Clear screen
       Serial.print("SSID: ");
       Serial.println(ssid);
       Serial.print("Password: ");
@@ -44,11 +54,11 @@ void loop() {
       Serial.println();
       break;
     case 5:
-      Serial.println("\033[2J\033[1;1H"); // clr scrn
+      Serial.println("\033[2J\033[1;1H");        // Clear screen
       ESP.reset();
       break;
     default:
-      Serial.println("\033[2J\033[1;1H"); // clr scrn
+      Serial.println("\033[2J\033[1;1H");        // Clear screen
       Serial.println();
       Serial.print(temp_i);
       Serial.println(" is not a valid selection.");
@@ -59,7 +69,7 @@ void loop() {
 }
 
 
-// reads serial port and returns string
+// Teads serial port and returns string
 String read_serial() {
   String s_str = "";
   int s_chr = -1;
@@ -80,7 +90,7 @@ String read_serial() {
   }
 }
 
-// propts vor user input and cheks length
+// Prompts for user input and check length
 void input_prompt(String& inpt_st, String inpt_nm, int inpt_ln) {
   Serial.print("Enter ");
   Serial.print(inpt_nm);
@@ -89,7 +99,7 @@ void input_prompt(String& inpt_st, String inpt_nm, int inpt_ln) {
   Serial.println();
   if (tmp_val.length() >= inpt_ln ) {
     inpt_st = tmp_val;
-    Serial.println("\033[2J\033[1;1H"); // clr scrn
+    Serial.println("\033[2J\033[1;1H");          // Clear screen
     Serial.print("New value of ");
     Serial.print(inpt_nm);
     Serial.print(" is: ");
@@ -102,4 +112,3 @@ void input_prompt(String& inpt_st, String inpt_nm, int inpt_ln) {
     Serial.println(" character long.");
   }
 }
-
