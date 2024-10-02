@@ -1,3 +1,5 @@
+# Serial menu for Arduino
+
 This code is for both ESP32 and ESP8266.
 
 It allows you to set up (Wi-Fi manager config) parameters vie old style MENU UI using the serial port.
